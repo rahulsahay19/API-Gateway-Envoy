@@ -1,0 +1,27 @@
+version: '3'
+services:
+  moviesapi:
+    build: MoviesAPI/
+    ports:
+      - "8082:80"
+      - "8083:443"
+    environment:
+      ASPNETCORE_URLS: "https://+;http://+"
+      ASPNETCORE_HTTPS_PORT: "8083"
+      ASPNETCORE_ENVIRONMENT: "Development"
+    volumes:
+      - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
+      - ${USERPROFILE}\.aspnet\https:/root/.aspnet/https/
+
+  seriesapi:
+    build: SeriesAPI/
+    ports:
+      - "8084:80"
+      - "8085:443"
+    environment:
+      ASPNETCORE_URLS: "https://+;http://+"
+      ASPNETCORE_HTTPS_PORT: "8085"
+      ASPNETCORE_ENVIRONMENT: "Development"
+    volumes:
+      - ${APPDATA}\microsoft\UserSecrets\:/root/.microsoft/usersecrets
+      - ${USERPROFILE}\.aspnet\https:/root/.aspnet/https/
